@@ -17,8 +17,6 @@ async function startServer() {
         port: PORT,
         host: '0.0.0.0',
         allowedHosts: [
-          '..dev',
-          '.repl.co',
           'localhost',
           '127.0.0.1'
         ]
