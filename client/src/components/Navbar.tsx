@@ -114,12 +114,6 @@ const Navbar = () => {
                 {item}
               </button>
             ))}
-            <a 
-              href="/admin"
-              className="block w-full text-left py-2 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 transition-colors duration-200 font-medium text-sm text-gray-500"
-            >
-              Admin Dashboard
-            </a>
           </motion.div>
         )}
       </div>
