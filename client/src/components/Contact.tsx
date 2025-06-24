@@ -131,7 +131,7 @@ const Contact = () => {
                       rel="noopener noreferrer"
                       className="block"
                     >
-                      <div className="flex items-center space-x-3 sm:space-x-4 p-4 sm:p-6 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 hover:border-transparent transition-all duration-300 group">
+                      <div className="flex items-center space-x-3 sm:space-x-4 p-4 sm:p-6 bg-gradient-to-r from-blue-50 to-emerald-50 dark:from-blue-900/20 dark:to-emerald-900/20 rounded-2xl border border-blue-100 dark:border-blue-800 hover:border-transparent transition-all duration-300 group shadow-lg hover:shadow-xl">
                         <motion.div 
                           className={`w-12 h-12 sm:w-16 sm:h-16 ${contact.bgColor} ${contact.hoverColor} rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300`}
                           whileHover={{ rotate: 5 }}
@@ -154,7 +154,7 @@ const Contact = () => {
                       </div>
                     </a>
                   ) : (
-                    <div className="flex items-center space-x-3 sm:space-x-4 p-4 sm:p-6 bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700">
+                    <div className="flex items-center space-x-3 sm:space-x-4 p-4 sm:p-6 bg-gradient-to-r from-blue-50 to-emerald-50 dark:from-blue-900/20 dark:to-emerald-900/20 rounded-2xl border border-blue-100 dark:border-blue-800 shadow-lg">
                       <motion.div 
                         className={`w-12 h-12 sm:w-16 sm:h-16 ${contact.bgColor} rounded-2xl flex items-center justify-center shadow-lg`}
                         whileHover={{ rotate: 5 }}
@@ -170,31 +170,6 @@ const Contact = () => {
                   )}
                 </motion.div>
               ))}
-
-              {/* Quick social actions */}
-              <motion.div 
-                className="mt-6 sm:mt-8 p-4 sm:p-6 bg-gradient-to-r from-blue-50 to-emerald-50 dark:from-blue-900/20 dark:to-emerald-900/20 rounded-2xl border border-blue-100 dark:border-blue-800"
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ delay: 0.8 }}
-              >
-                <h4 className="font-bold text-slate-900 dark:text-white mb-3 sm:mb-4 text-center text-sm sm:text-base">Let's Connect!</h4>
-                <div className="flex justify-center space-x-3 sm:space-x-4">
-                  {contactInfo.filter(item => item.link).map((social, index) => (
-                    <motion.a
-                      key={index}
-                      href={social.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-10 h-10 sm:w-12 sm:h-12 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-300"
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <i className={`${social.icon} text-slate-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors text-sm sm:text-base`}></i>
-                    </motion.a>
-                  ))}
-                </div>
-              </motion.div>
             </motion.div>
 
             {/* Additional Contact Message */}
