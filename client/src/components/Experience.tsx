@@ -79,7 +79,7 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-12 sm:py-16 lg:py-20 bg-gray-50" ref={ref}>
+    <section id="experience" className="py-12 sm:py-16 lg:py-20 bg-gray-50 dark:bg-gray-900" ref={ref}>
       <div className="container mx-auto px-4 sm:px-6">
         <motion.div 
           className="text-center mb-12 sm:mb-16"
@@ -88,7 +88,7 @@ const Experience = () => {
           animate={inView ? "visible" : "hidden"}
         >
           <motion.h2 
-            className="text-4xl md:text-5xl font-bold text-slate-900 mb-6"
+            className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6"
             variants={itemVariants}
           >
             Experience
@@ -98,7 +98,7 @@ const Experience = () => {
             variants={itemVariants}
           />
           <motion.p 
-            className="text-xl text-slate-600"
+            className="text-xl text-slate-600 dark:text-gray-300"
             variants={itemVariants}
           >
             My professional journey and achievements
@@ -119,20 +119,20 @@ const Experience = () => {
                 <div className={`absolute left-[-23px] top-2 w-4 h-4 bg-${exp.color}-500 rounded-full border-4 border-white shadow-lg`}></div>
                 
                 <motion.div 
-                  className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
                   whileHover={{ y: -5 }}
                 >
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                     <div>
-                      <h3 className="text-xl font-bold text-slate-900">{exp.title}</h3>
-                      <p className={`text-${exp.color}-600 font-semibold`}>{exp.company}</p>
+                      <h3 className="text-xl font-bold text-slate-900 dark:text-white">{exp.title}</h3>
+                      <p className={`text-${exp.color}-600 dark:text-${exp.color}-400 font-semibold`}>{exp.company}</p>
                     </div>
-                    <span className="text-slate-500 bg-gray-100 px-3 py-1 rounded-full text-sm mt-2 md:mt-0">
+                    <span className="text-slate-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-sm mt-2 md:mt-0">
                       {exp.period}
                     </span>
                   </div>
                   
-                  <p className="text-slate-600 mb-4 leading-relaxed">
+                  <p className="text-slate-600 dark:text-gray-300 mb-4 leading-relaxed">
                     {exp.description}
                   </p>
                   
@@ -146,7 +146,7 @@ const Experience = () => {
                         transition={{ delay: (index * 0.2) + (achievementIndex * 0.1) + 0.5 }}
                       >
                         <i className="fas fa-chevron-right text-emerald-500 text-sm mt-1 mr-3"></i>
-                        <span className="text-slate-600">{achievement}</span>
+                        <span className="text-slate-600 dark:text-gray-300">{achievement}</span>
                       </motion.div>
                     ))}
                   </div>
