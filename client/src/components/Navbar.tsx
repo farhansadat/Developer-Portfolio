@@ -104,14 +104,18 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="absolute top-full left-0 right-0 md:hidden mt-2 mx-4 bg-white dark:bg-gray-900 backdrop-blur-lg bg-opacity-95 dark:bg-opacity-95 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 p-4 z-50"
+            className="absolute top-full left-0 right-0 md:hidden mt-2 mx-4 backdrop-blur-xl bg-white/10 dark:bg-black/20 rounded-2xl shadow-2xl border border-white/20 dark:border-gray-700/30 p-6 z-50"
+            style={{
+              backdropFilter: 'blur(20px)',
+              WebkitBackdropFilter: 'blur(20px)',
+            }}
           >
-            <div className="space-y-1">
+            <div className="space-y-2">
               {['about', 'projects', 'resume', 'experience', 'education', 'contact'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}
-                  className="block w-full text-left py-3 px-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 transition-all duration-200 font-medium capitalize"
+                  className="block w-full text-center py-4 px-4 rounded-xl hover:bg-white/20 dark:hover:bg-white/10 text-slate-900 dark:text-white hover:text-blue-500 dark:hover:text-blue-400 transition-all duration-200 font-medium capitalize text-lg"
                 >
                   {item}
                 </button>
