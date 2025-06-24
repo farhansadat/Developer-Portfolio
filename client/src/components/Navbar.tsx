@@ -32,7 +32,7 @@ const Navbar = () => {
         isScrolled ? 'glass-effect border-b border-white/20 dark:border-gray-700/50' : 'bg-transparent'
       }`}
     >
-      <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+      <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4 relative">
         <div className="flex items-center justify-between">
           <motion.div 
             initial={{ opacity: 0 }}
@@ -100,20 +100,23 @@ const Navbar = () => {
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden mt-4 pb-4"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="absolute top-full left-0 right-0 md:hidden mt-2 mx-4 bg-white dark:bg-gray-900 backdrop-blur-lg bg-opacity-95 dark:bg-opacity-95 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 p-4 z-50"
           >
-            {['about', 'projects', 'resume', 'experience', 'education', 'contact'].map((item) => (
-              <button
-                key={item}
-                onClick={() => scrollToSection(item)}
-                className="block w-full text-left py-2 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 transition-colors duration-200 font-medium capitalize"
-              >
-                {item}
-              </button>
-            ))}
+            <div className="space-y-1">
+              {['about', 'projects', 'resume', 'experience', 'education', 'contact'].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => scrollToSection(item)}
+                  className="block w-full text-left py-3 px-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 transition-all duration-200 font-medium capitalize"
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
           </motion.div>
         )}
       </div>
