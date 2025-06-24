@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { fallbackSkills } from '../data/fallbackData';
+import { skills } from '../data/skills';
 
 const Resume = () => {
   const [ref, inView] = useInView({
@@ -27,14 +27,14 @@ const Resume = () => {
     },
   };
 
-  // Group skills by category from fallback data
-  const skillsByCategory = fallbackSkills.reduce((acc, skill) => {
+  // Group skills by category
+  const skillsByCategory = skills.reduce((acc, skill) => {
     if (!acc[skill.category]) acc[skill.category] = [];
     acc[skill.category].push(skill);
     return acc;
-  }, {} as Record<string, typeof fallbackSkills>);
+  }, {} as Record<string, typeof skills>);
   
-  const skills = skillsByCategory;
+  const groupedSkills = skillsByCategory;
 
   return (
     <section id="resume" className="py-12 sm:py-16 lg:py-20 bg-white" ref={ref}>
@@ -103,10 +103,15 @@ const Resume = () => {
               <i className="fas fa-code mr-3 text-blue-500"></i>Technical Skills
             </h3>
             <div className="grid md:grid-cols-3 gap-6">
-              {Object.entries(skills).map(([category, skillList]) => (
+              {Object.entries(groupedSkills).map(([category, skillList]) => (
                 <div key={category}>
                   <h4 className="font-semibold text-slate-900 dark:text-white mb-3 capitalize">
-                    {category === 'aiml' ? 'AI & ML' : category === 'frontend' ? 'Frontend' : 'Backend'}
+                    {category === 'Frontend' ? 'Frontend' : 
+                     category === 'Backend' ? 'Backend' : 
+                     category === 'Database' ? 'Database' : 
+                     category === 'Cloud' ? 'Cloud' : 
+                     category === 'DevOps' ? 'DevOps' : 
+                     category === 'AI/ML' ? 'AI & ML' : category}
                   </h4>
                   <div className="space-y-2">
                     {skillList.map((skill) => (
@@ -115,8 +120,12 @@ const Resume = () => {
                         <div className="w-20 bg-gray-200 rounded-full h-2">
                           <motion.div 
                             className={`h-2 rounded-full ${
-                              category === 'frontend' ? 'bg-blue-500' :
-                              category === 'backend' ? 'bg-emerald-500' : 'bg-purple-500'
+                              category === 'Frontend' ? 'bg-blue-500' :
+                              category === 'Backend' ? 'bg-emerald-500' : 
+                              category === 'Database' ? 'bg-yellow-500' :
+                              category === 'Cloud' ? 'bg-orange-500' :
+                              category === 'DevOps' ? 'bg-red-500' :
+                              category === 'AI/ML' ? 'bg-purple-500' : 'bg-gray-500'
                             }`}
                             initial={{ width: 0 }}
                             animate={inView ? { width: `${skill.level}%` } : { width: 0 }}
@@ -128,6 +137,46 @@ const Resume = () => {
                   </div>
                 </div>
               ))}
+            </div>
+          </motion.div>
+
+          {/* Languages */}
+          <motion.div 
+            className="mb-8"
+            variants={itemVariants}
+          >
+            <h3 className="text-xl font-bold text-slate-900 mb-4 flex items-center">
+              <i className="fas fa-globe mr-3 text-blue-500"></i>Languages
+            </h3>
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="flex items-center justify-between bg-gray-50 dark:bg-gray-800 p-3 rounded-lg">
+                <div className="flex items-center">
+                  <span className="text-2xl mr-3">🇦🇫</span>
+                  <span className="text-slate-700 dark:text-gray-300 font-medium">Dari</span>
+                </div>
+                <span className="text-sm text-slate-500 dark:text-gray-400">Native</span>
+              </div>
+              <div className="flex items-center justify-between bg-gray-50 dark:bg-gray-800 p-3 rounded-lg">
+                <div className="flex items-center">
+                  <span className="text-2xl mr-3">🇦🇫</span>
+                  <span className="text-slate-700 dark:text-gray-300 font-medium">Pashto</span>
+                </div>
+                <span className="text-sm text-slate-500 dark:text-gray-400">Native</span>
+              </div>
+              <div className="flex items-center justify-between bg-gray-50 dark:bg-gray-800 p-3 rounded-lg">
+                <div className="flex items-center">
+                  <span className="text-2xl mr-3">🇺🇸</span>
+                  <span className="text-slate-700 dark:text-gray-300 font-medium">English</span>
+                </div>
+                <span className="text-sm text-slate-500 dark:text-gray-400">Fluent</span>
+              </div>
+              <div className="flex items-center justify-between bg-gray-50 dark:bg-gray-800 p-3 rounded-lg">
+                <div className="flex items-center">
+                  <span className="text-2xl mr-3">🇹🇷</span>
+                  <span className="text-slate-700 dark:text-gray-300 font-medium">Turkish</span>
+                </div>
+                <span className="text-sm text-slate-500 dark:text-gray-400">Fluent</span>
+              </div>
             </div>
           </motion.div>
 
@@ -157,20 +206,36 @@ const Resume = () => {
             </h3>
             <div className="grid md:grid-cols-2 gap-4">
               <div className="flex items-center bg-gray-50 dark:bg-gray-800 p-3 rounded-lg">
+                <i className="fab fa-google text-blue-500 text-xl mr-3"></i>
+                <span className="text-slate-700 dark:text-gray-300">Google Cloud Professional ML Engineer</span>
+              </div>
+              <div className="flex items-center bg-gray-50 dark:bg-gray-800 p-3 rounded-lg">
+                <i className="fab fa-microsoft text-blue-600 text-xl mr-3"></i>
+                <span className="text-slate-700 dark:text-gray-300">Microsoft Azure AI Engineer Associate</span>
+              </div>
+              <div className="flex items-center bg-gray-50 dark:bg-gray-800 p-3 rounded-lg">
+                <i className="fab fa-aws text-orange-500 text-xl mr-3"></i>
+                <span className="text-slate-700 dark:text-gray-300">AWS Certified Solutions Architect</span>
+              </div>
+              <div className="flex items-center bg-gray-50 dark:bg-gray-800 p-3 rounded-lg">
+                <i className="fab fa-react text-blue-500 text-xl mr-3"></i>
+                <span className="text-slate-700 dark:text-gray-300">Meta Front-End Developer Professional Certificate</span>
+              </div>
+              <div className="flex items-center bg-gray-50 dark:bg-gray-800 p-3 rounded-lg">
+                <i className="fab fa-node-js text-green-500 text-xl mr-3"></i>
+                <span className="text-slate-700 dark:text-gray-300">Full Stack JavaScript Developer (MongoDB University)</span>
+              </div>
+              <div className="flex items-center bg-gray-50 dark:bg-gray-800 p-3 rounded-lg">
+                <i className="fas fa-database text-blue-600 text-xl mr-3"></i>
+                <span className="text-slate-700 dark:text-gray-300">PostgreSQL Professional Certification</span>
+              </div>
+              <div className="flex items-center bg-gray-50 dark:bg-gray-800 p-3 rounded-lg">
+                <i className="fab fa-docker text-blue-400 text-xl mr-3"></i>
+                <span className="text-slate-700 dark:text-gray-300">Docker Certified Associate (DCA)</span>
+              </div>
+              <div className="flex items-center bg-gray-50 dark:bg-gray-800 p-3 rounded-lg">
                 <i className="fas fa-shield-alt text-red-500 text-xl mr-3"></i>
-                <span className="text-slate-700 dark:text-gray-300">CCNA Security</span>
-              </div>
-              <div className="flex items-center bg-gray-50 dark:bg-gray-800 p-3 rounded-lg">
-                <i className="fab fa-python text-blue-500 text-xl mr-3"></i>
-                <span className="text-slate-700 dark:text-gray-300">Python for Research</span>
-              </div>
-              <div className="flex items-center bg-gray-50 dark:bg-gray-800 p-3 rounded-lg">
-                <i className="fas fa-microchip text-purple-500 text-xl mr-3"></i>
-                <span className="text-slate-700 dark:text-gray-300">RISC-V CPU Core</span>
-              </div>
-              <div className="flex items-center bg-gray-50 dark:bg-gray-800 p-3 rounded-lg">
-                <i className="fas fa-graduation-cap text-green-500 text-xl mr-3"></i>
-                <span className="text-slate-700 dark:text-gray-300">CS50 Business</span>
+                <span className="text-slate-700 dark:text-gray-300">CISSP - Certified Information Systems Security Professional</span>
               </div>
             </div>
           </motion.div>
