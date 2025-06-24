@@ -1,5 +1,5 @@
-// Static skills data (replace with your actual skills)
 export const skills = [
+  // Frontend Technologies
   {
     id: 1,
     name: 'React',
@@ -18,6 +18,32 @@ export const skills = [
   },
   {
     id: 3,
+    name: 'JavaScript',
+    category: 'Frontend',
+    level: 92,
+    icon: 'fab fa-js-square',
+    color: '#F7DF1E'
+  },
+  {
+    id: 4,
+    name: 'Next.js',
+    category: 'Frontend',
+    level: 80,
+    icon: 'fas fa-layer-group',
+    color: '#000000'
+  },
+  {
+    id: 5,
+    name: 'Tailwind CSS',
+    category: 'Frontend',
+    level: 85,
+    icon: 'fas fa-paint-brush',
+    color: '#06B6D4'
+  },
+  
+  // Backend Technologies
+  {
+    id: 6,
     name: 'Node.js',
     category: 'Backend',
     level: 88,
@@ -25,7 +51,7 @@ export const skills = [
     color: '#339933'
   },
   {
-    id: 4,
+    id: 7,
     name: 'Python',
     category: 'Backend',
     level: 82,
@@ -33,7 +59,67 @@ export const skills = [
     color: '#3776AB'
   },
   {
-    id: 5,
+    id: 8,
+    name: 'Express.js',
+    category: 'Backend',
+    level: 85,
+    icon: 'fas fa-server',
+    color: '#000000'
+  },
+  {
+    id: 9,
+    name: 'FastAPI',
+    category: 'Backend',
+    level: 78,
+    icon: 'fas fa-rocket',
+    color: '#009688'
+  },
+  {
+    id: 10,
+    name: 'Django',
+    category: 'Backend',
+    level: 75,
+    icon: 'fas fa-globe',
+    color: '#092E20'
+  },
+  
+  // AI & Machine Learning
+  {
+    id: 11,
+    name: 'TensorFlow',
+    category: 'AI/ML',
+    level: 80,
+    icon: 'fas fa-brain',
+    color: '#FF6F00'
+  },
+  {
+    id: 12,
+    name: 'PyTorch',
+    category: 'AI/ML',
+    level: 75,
+    icon: 'fas fa-robot',
+    color: '#EE4C2C'
+  },
+  {
+    id: 13,
+    name: 'OpenAI APIs',
+    category: 'AI/ML',
+    level: 85,
+    icon: 'fas fa-microchip',
+    color: '#10A37F'
+  },
+  {
+    id: 14,
+    name: 'Scikit-learn',
+    category: 'AI/ML',
+    level: 78,
+    icon: 'fas fa-chart-line',
+    color: '#F7931E'
+  },
+  
+  // Database Technologies
+  {
+    id: 15,
     name: 'PostgreSQL',
     category: 'Database',
     level: 80,
@@ -41,12 +127,70 @@ export const skills = [
     color: '#336791'
   },
   {
-    id: 6,
+    id: 16,
+    name: 'MongoDB',
+    category: 'Database',
+    level: 78,
+    icon: 'fas fa-leaf',
+    color: '#47A248'
+  },
+  {
+    id: 17,
+    name: 'MySQL',
+    category: 'Database',
+    level: 82,
+    icon: 'fas fa-database',
+    color: '#4479A1'
+  },
+  {
+    id: 18,
+    name: 'Redis',
+    category: 'Database',
+    level: 70,
+    icon: 'fas fa-memory',
+    color: '#DC382D'
+  },
+  
+  // Cloud & DevOps
+  {
+    id: 19,
     name: 'AWS',
     category: 'Cloud',
     level: 75,
     icon: 'fab fa-aws',
     color: '#FF9900'
+  },
+  {
+    id: 20,
+    name: 'Docker',
+    category: 'DevOps',
+    level: 80,
+    icon: 'fab fa-docker',
+    color: '#2496ED'
+  },
+  {
+    id: 21,
+    name: 'Kubernetes',
+    category: 'DevOps',
+    level: 68,
+    icon: 'fas fa-dharmachakra',
+    color: '#326CE5'
+  },
+  {
+    id: 22,
+    name: 'Git',
+    category: 'DevOps',
+    level: 90,
+    icon: 'fab fa-git-alt',
+    color: '#F05032'
+  },
+  {
+    id: 23,
+    name: 'CI/CD',
+    category: 'DevOps',
+    level: 75,
+    icon: 'fas fa-sync-alt',
+    color: '#4CAF50'
   }
 ];
 
