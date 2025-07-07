@@ -55,8 +55,6 @@ const Navbar = () => {
 
                 className="hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 transition-colors duration-200 font-medium capitalize hover:underline underline-offset-4"
 
-                className="hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 transition-colors duration-200 font-medium capitalize hover:underline underline-offset-4"
-
               >
                 {item}
               </motion.button>
