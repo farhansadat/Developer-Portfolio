@@ -41,7 +41,11 @@ const Hero = () => {
   ];
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-emerald-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 pt-16 sm:pt-20 relative overflow-hidden">
+
+    <section className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-900 pt-16 sm:pt-20 relative overflow-hidden">
+
+    <section className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-900 pt-16 sm:pt-20 relative overflow-hidden">
+
       {/* Removed 3D Background for better performance */}
       
       {/* 3D Floating background elements */}

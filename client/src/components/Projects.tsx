@@ -132,6 +132,7 @@ const Projects = () => {
   return (
     <section id="projects" className="py-12 sm:py-16 lg:py-20 bg-gray-50 dark:bg-gray-800" ref={ref}>
       <div className="container mx-auto px-4 sm:px-6">
+
         <motion.div 
           className="text-center mb-12 sm:mb-16"
           variants={containerVariants}
@@ -208,6 +209,8 @@ const Projects = () => {
           </motion.div>
         </motion.div>
 
+
+
         {loading ? (
           <div className="flex justify-center items-center py-20">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
@@ -234,6 +237,7 @@ const Projects = () => {
                 key={project.id}
                 variants={itemVariants}
                 whileHover={{ y: -8 }}
+
                 className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group"
               >
                 <div className="h-40 sm:h-48 relative overflow-hidden">
@@ -396,10 +400,77 @@ const Projects = () => {
                   </div>
                 </div>
               </div>
+
+                className="relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
+              >
+                {project.featured && (
+                  <div className="absolute top-3 right-3 bg-yellow-400 text-yellow-900 px-2 py-1 rounded-full text-xs font-semibold z-10">
+                    Featured
+                  </div>
+                )}
+                <div className="p-4 sm:p-6">
+                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-2 sm:mb-3">{project.title}</h3>
+                  <p className="text-slate-600 dark:text-gray-300 mb-3 sm:mb-4 leading-relaxed text-sm sm:text-base">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-3 sm:mb-4">
+                    {project.techStack.slice(0, 4).map((tech) => (
+                      <span 
+                        key={tech}
+                        className="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                    {project.techStack.length > 4 && (
+                      <span className="bg-gray-200 dark:bg-gray-600 text-gray-600 dark:text-gray-300 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium">
+                        +{project.techStack.length - 4}
+                      </span>
+                    )}
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex space-x-3 sm:space-x-4">
+                      <a 
+                        href={project.githubUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-slate-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
+                        title="View Code"
+                      >
+                        <i className="fab fa-github text-lg sm:text-xl"></i>
+                      </a>
+                      {project.liveUrl && (
+                        <a 
+                          href={project.liveUrl} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-slate-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
+                          title="Live Demo"
+                        >
+                          <i className="fas fa-external-link-alt text-lg sm:text-xl"></i>
+                        </a>
+                      )}
+                    </div>
+                    <div className="flex items-center space-x-3 text-xs text-slate-500 dark:text-gray-400">
+                      <span className="flex items-center">
+                        <i className="fas fa-star mr-1"></i>
+                        {project.stars}
+                      </span>
+                      <span className="flex items-center">
+                        <i className="fas fa-code-branch mr-1"></i>
+                        {project.forks}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
               </motion.div>
             ))}
           </motion.div>
         )}
+
+
+
 
         {!loading && !error && projectsData.length > 0 && (
           <motion.div 

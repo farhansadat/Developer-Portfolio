@@ -1,0 +1,17 @@
+.github-footer-icon {
+  color: #333 !important; /* Default GitHub logo color */
+}
+
+.github-footer-icon:hover,
+.github-footer-icon:focus {
+  color: #000 !important; /* Black on hover in light mode */
+}
+
+.dark .github-footer-icon,
+.dark .github-footer-icon:focus {
+  color: #fff !important; /* White in dark mode */
+}
+
+.dark .github-footer-icon:hover {
+  color: #fff !important; /* White on hover in dark mode */
+}

@@ -1,6 +1,7 @@
 import { Route, Switch } from "wouter";
 import { motion } from "framer-motion";
 import Navbar from "./components/Navbar";
+import "./github-footer-icon.css";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Projects from "./components/Projects";
@@ -49,8 +50,8 @@ function App() {
             </div>
             <div className="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
               <a href="https://github.com/farhansadat" className="text-gray-400 hover:text-blue-400 transition-colors text-lg sm:text-xl">
-                <i className="fab fa-github"></i>
-              </a>
+  <i className="fab fa-github"></i>
+</a>
               <a href="https://www.linkedin.com/in/alimullahsadat/" className="text-gray-400 hover:text-blue-400 transition-colors text-lg sm:text-xl">
                 <i className="fab fa-linkedin"></i>
               </a>
