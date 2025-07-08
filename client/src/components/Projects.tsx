@@ -309,59 +309,6 @@ const Projects = () => {
                   </div>
                 )}
 
-                  <p className="text-slate-600 dark:text-gray-300 mb-3 sm:mb-4 leading-relaxed text-sm sm:text-base">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-3 sm:mb-4">
-                    {project.techStack.slice(0, 4).map((tech) => (
-                      <span 
-                        key={tech}
-                        className="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                    {project.techStack.length > 4 && (
-                      <span className="bg-gray-200 dark:bg-gray-600 text-gray-600 dark:text-gray-300 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium">
-                        +{project.techStack.length - 4}
-                      </span>
-                    )}
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="flex space-x-3 sm:space-x-4">
-                      <a 
-                        href={project.githubUrl} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="text-slate-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
-                        title="View Code"
-                      >
-                        <i className="fab fa-github text-lg sm:text-xl"></i>
-                      </a>
-                      {project.liveUrl && (
-                        <a 
-                          href={project.liveUrl} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-slate-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
-                          title="Live Demo"
-                        >
-                          <i className="fas fa-external-link-alt text-lg sm:text-xl"></i>
-                        </a>
-                      )}
-                    </div>
-                    <div className="flex items-center space-x-3 text-xs text-slate-500 dark:text-gray-400">
-                      <span className="flex items-center">
-                        <i className="fas fa-star mr-1"></i>
-                        {project.stars}
-                      </span>
-                      <span className="flex items-center">
-                        <i className="fas fa-code-branch mr-1"></i>
-                        {project.forks}
-                      </span>
-                    </div>
-                  </div>
-                </motion.div>
             ))}
           </motion.div>
         )}
