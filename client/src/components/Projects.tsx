@@ -96,8 +96,11 @@ const Projects = () => {
             featured: project.featured || isFeatured
           };
         });
-        
-        setProjectsData(projectsWithFeatured);
+        // Remove duplicate projects by id
+        const uniqueProjects = projectsWithFeatured.filter((proj, idx, arr) =>
+          arr.findIndex(p => p.id === proj.id) === idx
+        );
+        setProjectsData(uniqueProjects);
         setError(null);
       } catch (err) {
         console.error('Failed to fetch GitHub projects:', err);
