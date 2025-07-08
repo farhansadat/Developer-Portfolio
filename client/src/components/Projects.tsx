@@ -358,9 +358,7 @@ const Projects = () => {
                       </span>
                     </div>
                   </div>
-                </div>
-
-              </motion.div>
+                </motion.div>
             ))}
           </motion.div>
         )}
