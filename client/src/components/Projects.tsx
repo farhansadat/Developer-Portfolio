@@ -81,8 +81,8 @@ const Projects = () => {
           arr.findIndex(p => p.id === proj.id) === idx
         );
         
-        // Only include featured projects (determined by GitHub 'featured' topic), max 5
-        const featuredProjects = uniqueProjects.filter(p => p.featured).slice(0, 5);
+        // Only include featured projects (determined by GitHub 'featured' topic), max 6
+        const featuredProjects = uniqueProjects.filter(p => p.featured).slice(0, 6);
         setProjectsData(featuredProjects);
         setError(null);
       } catch (err) {
