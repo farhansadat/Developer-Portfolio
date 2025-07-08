@@ -240,108 +240,7 @@ const Projects = () => {
 
                 className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group"
               >
-                <div className="h-40 sm:h-48 relative overflow-hidden">
-                {getProjectImage(project.title) ? (
-                  <>
-                    <img 
-                      src={getProjectImage(project.title)} 
-                      alt={project.title}
-                      className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105"
-                      style={{ objectPosition: '50% 5%' }}
-                      onError={(e) => {
-                        console.log('Image failed to load for:', project.title, 'URL:', getProjectImage(project.title));
-                        const target = e.target as HTMLImageElement;
-                        target.style.display = 'none';
-                        const fallback = target.nextElementSibling as HTMLElement;
-                        if (fallback) fallback.style.display = 'block';
-                      }}
-                    />
-                    
-                    {/* View Full Image Overlay */}
-                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
-                      <button 
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          // Create modal to show full image
-                          const modal = document.createElement('div');
-                          modal.className = 'fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4';
-                          modal.style.backdropFilter = 'blur(4px)';
-                          
-                          const imageUrl = getProjectImage(project.title);
-                          const escapedTitle = project.title.replace(/'/g, "\\'");
-                          
-                          modal.innerHTML = `
-                            <div class="relative max-w-5xl max-h-[90vh] bg-white rounded-lg overflow-hidden shadow-2xl">
-                              <div class="relative">
-                                <img src="${imageUrl}" alt="${escapedTitle}" class="w-full h-auto max-h-[80vh] object-contain" />
-                                <button class="absolute top-4 right-4 text-white bg-black/60 hover:bg-black/80 rounded-full w-10 h-10 flex items-center justify-center transition-all duration-200 shadow-lg" onclick="this.parentElement.parentElement.parentElement.remove()">
-                                  <i class="fas fa-times text-lg"></i>
-                                </button>
-                              </div>
-                              <div class="p-4 bg-white border-t">
-                                <h3 class="text-lg font-semibold text-gray-800">${escapedTitle}</h3>
-                                <p class="text-sm text-gray-600 mt-1">Full size screenshot</p>
-                              </div>
-                            </div>
-                          `;
-                          
-                          modal.onclick = (e) => {
-                            if (e.target === modal) modal.remove();
-                          };
-                          
-                          document.body.appendChild(modal);
-                          
-                          // Prevent body scroll when modal is open
-                          document.body.style.overflow = 'hidden';
-                          
-                          // Restore scroll when modal is closed
-                          const closeModal = () => {
-                            document.body.style.overflow = '';
-                            modal.remove();
-                          };
-                          
-                          modal.addEventListener('click', (e) => {
-                            if (e.target === modal) closeModal();
-                          });
-                          
-                          // Close on escape key
-                          const handleEscape = (e) => {
-                            if (e.key === 'Escape') {
-                              closeModal();
-                              document.removeEventListener('keydown', handleEscape);
-                            }
-                          };
-                          document.addEventListener('keydown', handleEscape);
-                        }}
-                        className="bg-white/95 backdrop-blur-sm text-gray-800 px-4 py-2 rounded-lg font-medium hover:bg-white hover:scale-105 transition-all duration-200 shadow-lg"
-                      >
-                        <i className="fas fa-expand mr-2"></i>
-                        View Full Image
-                      </button>
-                    </div>
-                    
-                    <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 absolute top-0 left-0 hidden fallback-gradient">
-                      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300"></div>
-                      <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 text-white">
-                        <i className="fab fa-github text-xl sm:text-2xl"></i>
-                      </div>
-                    </div>
-                  </>
-                ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 relative">
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300"></div>
-                    <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 text-white">
-                      <i className="fab fa-github text-xl sm:text-2xl"></i>
-                    </div>
-                  </div>
-                )}
-                {project.featured && (
-                  <div className="absolute top-3 right-3 bg-yellow-400 text-yellow-900 px-2 py-1 rounded-full text-xs font-semibold">
-                    Featured
-                  </div>
-                )}
-              </div>
-              
+                
               <div className="p-4 sm:p-6">
                 <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-2 sm:mb-3">{project.title}</h3>
                 <p className="text-slate-600 dark:text-gray-300 mb-3 sm:mb-4 leading-relaxed text-sm sm:text-base">
@@ -406,8 +305,7 @@ const Projects = () => {
                     Featured
                   </div>
                 )}
-                <div className="p-4 sm:p-6">
-                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-2 sm:mb-3">{project.title}</h3>
+
                   <p className="text-slate-600 dark:text-gray-300 mb-3 sm:mb-4 leading-relaxed text-sm sm:text-base">
                     {project.description}
                   </p>
