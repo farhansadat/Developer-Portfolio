@@ -76,31 +76,14 @@ const Projects = () => {
           return !isExcluded;
         });
         
-        // Mark featured projects - check multiple name variations
-        const projectsWithFeatured = filteredProjects.map(project => {
-          const projectVariations = [
-            project.title,
-            project.title.toLowerCase(),
-            project.title.replace(/\s+/g, '-'),
-            project.title.replace(/\s+/g, '-').toLowerCase(),
-            project.title.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()
-          ];
-          
-          const isFeatured = GITHUB_CONFIG.featuredRepos.some(featuredRepo => 
-            projectVariations.includes(featuredRepo) || 
-            featuredRepo === project.title.toLowerCase().replace(/\s+/g, '-')
-          );
-          
-          return {
-            ...project,
-            featured: project.featured || isFeatured
-          };
-        });
         // Remove duplicate projects by id
-        const uniqueProjects = projectsWithFeatured.filter((proj, idx, arr) =>
+        const uniqueProjects = filteredProjects.filter((proj, idx, arr) =>
           arr.findIndex(p => p.id === proj.id) === idx
         );
-        setProjectsData(uniqueProjects);
+        
+        // Only include featured projects (determined by GitHub 'featured' topic), max 5
+        const featuredProjects = uniqueProjects.filter(p => p.featured).slice(0, 5);
+        setProjectsData(featuredProjects);
         setError(null);
       } catch (err) {
         console.error('Failed to fetch GitHub projects:', err);
@@ -299,12 +282,6 @@ const Projects = () => {
                   </div>
                 </div>
               </div>
-
-                {project.featured && (
-                  <div className="absolute top-3 right-3 bg-yellow-400 text-yellow-900 px-2 py-1 rounded-full text-xs font-semibold z-10">
-                    Featured
-                  </div>
-                )}
               </motion.div>
             ))}
           </motion.div>

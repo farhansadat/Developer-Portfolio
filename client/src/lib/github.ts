@@ -84,12 +84,8 @@ export async function transformRepoToProject(repo: GitHubRepo, username: string)
   const languages = await fetchRepoLanguages(username, repo.name);
   const techStack = Object.keys(languages);
   
-  // Determine if project is featured - exclude portfolio repos and personal development repos
-  const isPortfolioRepo = repo.name.toLowerCase().includes('portfolio') || 
-                          repo.name.toLowerCase().includes('mydev') ||
-                          repo.name.toLowerCase().includes('testingdev');
-  
-  const featured = !isPortfolioRepo && (repo.stargazers_count > 0 || repo.topics.includes('featured'));
+  // Determine if project is featured
+  const featured = repo.topics.includes('featured');
   
   return {
     id: repo.id,
