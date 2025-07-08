@@ -308,16 +308,6 @@ const Projects = () => {
             ))}
           </motion.div>
         )}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="border-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white px-6 sm:px-8 py-2 sm:py-3 rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base inline-block"
-            >
-              View All on GitHub
-            </motion.a>
-          </motion.div>
-        )}
       </div>
     </section>
   );
