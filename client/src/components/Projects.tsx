@@ -135,7 +135,6 @@ const Projects = () => {
   return (
     <section id="projects" className="py-12 sm:py-16 lg:py-20 bg-gray-50 dark:bg-gray-800" ref={ref}>
       <div className="container mx-auto px-4 sm:px-6">
-
         <motion.div 
           className="text-center mb-12 sm:mb-16"
           variants={containerVariants}
@@ -211,8 +210,6 @@ const Projects = () => {
             </motion.div>
           </motion.div>
         </motion.div>
-
-
 
         {loading ? (
           <div className="flex justify-center items-center py-20">
@@ -311,19 +308,6 @@ const Projects = () => {
             ))}
           </motion.div>
         )}
-
-
-
-
-        {!loading && !error && projectsData.length > 0 && (
-          <motion.div 
-            className="text-center mt-8 sm:mt-12"
-            variants={itemVariants}
-            initial="hidden"
-            animate={inView ? "visible" : "hidden"}
-          >
-            <motion.a
-              href={`https://github.com/${GITHUB_CONFIG.username}`}
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
