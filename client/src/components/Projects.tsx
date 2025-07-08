@@ -401,8 +401,6 @@ const Projects = () => {
                 </div>
               </div>
 
-                className="relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
-              >
                 {project.featured && (
                   <div className="absolute top-3 right-3 bg-yellow-400 text-yellow-900 px-2 py-1 rounded-full text-xs font-semibold z-10">
                     Featured
