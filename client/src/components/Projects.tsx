@@ -305,6 +305,7 @@ const Projects = () => {
                     Featured
                   </div>
                 )}
+              </motion.div>
             ))}
           </motion.div>
         )}
