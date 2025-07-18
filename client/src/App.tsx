@@ -10,6 +10,7 @@ import Experience from "./components/Experience";
 import Education from "./components/Education";
 import Contact from "./components/Contact";
 import NotFound from "./pages/not-found";
+import { useEffect } from 'react';
 
 function HomePage() {
   return (
@@ -26,6 +27,24 @@ function HomePage() {
 }
 
 function App() {
+useEffect(() => {
+    (function (d, t) {
+      var BASE_URL = "https://app.chatwoot.com";
+      var g = d.createElement(t),
+        s = d.getElementsByTagName(t)[0];
+      g.src = BASE_URL + "/packs/js/sdk.js";
+      g.async = true;
+      s.parentNode.insertBefore(g, s);
+      g.onload = function () {
+        if (window.chatwootSDK) {
+          window.chatwootSDK.run({
+            websiteToken: "sLENoyekSAB9txEgGGLhvQ8x",
+            baseUrl: BASE_URL,
+          });
+        }
+      };
+    })(document, "script");
+  }, []);
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
       <Navbar />
