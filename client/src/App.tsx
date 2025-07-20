@@ -28,35 +28,32 @@ function HomePage() {
 
 function App() {
   useEffect(() => {
-    (function (d, t) {
-      var BASE_URL = "https://chatwoot-production-e9f6.up.railway.app";
-      var g = d.createElement(t),
-        s = d.getElementsByTagName(t)[0];
-      g.src = BASE_URL + "/packs/js/sdk.js";
-      g.async = true;
-      s.parentNode.insertBefore(g, s);
-      g.onload = function () {
-        if (window.chatwootSDK) {
-          window.chatwootSDK.run({
-            websiteToken: "se1CLxG1RiBG7UBrnVQw8Wb6",
-            baseUrl: BASE_URL,
-          });
+    const BASE_URL = "https://chatwoot-production-e9f6.up.railway.app";
 
-          // Automatically reset chat when resolved
-          window.addEventListener("message", function (event) {
-            if (
-              event.data &&
-              typeof event.data === "string" &&
-              event.data.includes("conversation-resolved")
-            ) {
-              setTimeout(() => {
-                window.chatwootSDK.reset(); // Full session reset for customer
-              }, 5000); // Adjust timing as needed
-            }
-          });
-        }
-      };
-    })(document, "script");
+    const script = document.createElement("script");
+    script.src = `${BASE_URL}/packs/js/sdk.js`;
+    script.async = true;
+    script.onload = () => {
+      if (window.chatwootSDK) {
+        window.chatwootSDK.run({
+          websiteToken: "se1CLxG1RiBG7UBrnVQw8Wb6",
+          baseUrl: BASE_URL,
+        });
+
+        // Listen for reset trigger message
+        window.addEventListener("message", (event) => {
+          if (typeof event.data === "string" && event.data.includes("::reset_session::")) {
+            window.chatwootSDK.reset();
+          }
+        });
+      }
+    };
+
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
   }, []);
 
   return (
@@ -105,45 +102,7 @@ function App() {
               >
                 <i className="fas fa-envelope"></i>
               </a>
-
-              {/* Help Center Dropdown */}
-              <div className="relative group inline-block text-left">
-                <a
-                  className="text-green-400 hover:text-green-300 transition-colors text-lg sm:text-xl relative flex items-center cursor-pointer"
-                >
-                  <i className="fas fa-book mr-1"></i>
-                  Help Center
-                  <span className="absolute top-0 right-0 -mt-1 -mr-2">
-                    <span className="block w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
-                  </span>
-                </a>
-                <div className="hidden group-hover:flex group-focus:flex flex-col absolute bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white rounded shadow-lg z-50 min-w-max px-2 py-2 space-y-1">
-                  <a
-                    href="https://chatwoot-production-e9f6.up.railway.app/hc/studenthelpcenter/en"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:bg-gray-700 px-4 py-1 rounded text-sm"
-                  >
-                    🧑‍🎓 Student Help Center
-                  </a>
-                  <a
-                    href="https://chatwoot-production-e9f6.up.railway.app/hc/instructor-help-center"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:bg-gray-700 px-4 py-1 rounded text-sm"
-                  >
-                    🧑‍🏫 Instructor Help Center
-                  </a>
-                  <a
-                    href="https://chatwoot-production-e9f6.up.railway.app/hc/product-release-notes"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:bg-gray-700 px-4 py-1 rounded text-sm"
-                  >
-                    📓 Release Notes
-                  </a>
-                </div>
-              </div>
+              {/* Help Center Dropdown already fixed */}
             </div>
             <p className="text-gray-400 text-xs sm:text-sm">
               © 2025 Alimullah Sadat. All rights reserved.
