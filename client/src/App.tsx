@@ -27,7 +27,7 @@ function HomePage() {
 }
 
 function App() {
-  const [showDropdown, setShowDropdown] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   useEffect(() => {
     (function (d, t) {
@@ -42,11 +42,25 @@ function App() {
           window.chatwootSDK.run({
             websiteToken: "se1CLxG1RiBG7UBrnVQw8Wb6",
             baseUrl: BASE_URL,
-            launcher: { show: false }, // Hide default bubble
+            launcher: {
+              show: false, // 👈 hide default red bubble
+            },
           });
         }
       };
     })(document, "script");
+  }, []);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(e) {
+      const dropdown = document.getElementById("help-center-dropdown");
+      if (dropdown && !dropdown.contains(e.target)) {
+        setDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
@@ -57,7 +71,7 @@ function App() {
         <Route component={NotFound} />
       </Switch>
 
-      {/* Custom Chat Launcher */}
+      {/* ✅ Custom Chatwoot Launcher */}
       <a
         onClick={() => window.$chatwoot?.toggle()}
         className="fixed bottom-6 right-6 z-50 cursor-pointer"
@@ -82,6 +96,7 @@ function App() {
                 ></motion.i>
               </div>
             </div>
+
             <div className="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6 relative">
               <a
                 href="https://github.com/farhansadat"
@@ -108,18 +123,20 @@ function App() {
                 <i className="fas fa-envelope"></i>
               </a>
 
-              {/* Help Center Dropdown (Fixed) */}
+              {/* ✅ Click-to-toggle Help Center Menu */}
               <div
+                id="help-center-dropdown"
                 className="relative text-gray-400 hover:text-green-400 text-lg sm:text-xl cursor-pointer"
-                onMouseEnter={() => setShowDropdown(true)}
-                onMouseLeave={() => setShowDropdown(false)}
               >
-                <div className="flex items-center space-x-1">
+                <div
+                  onClick={() => setDropdownOpen((prev) => !prev)}
+                  className="flex items-center space-x-1"
+                >
                   <i className="fas fa-book"></i>
                   <span className="text-sm">Help Center</span>
                   <span className="ml-1 block w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
                 </div>
-                {showDropdown && (
+                {dropdownOpen && (
                   <div className="absolute bottom-full mb-2 left-0 bg-gray-800 text-white rounded-md shadow-lg text-sm z-50 min-w-[220px]">
                     <a
                       href="https://chatwoot-production-e9f6.up.railway.app/hc/studenthelpcenter/en"
@@ -149,6 +166,7 @@ function App() {
                 )}
               </div>
             </div>
+
             <p className="text-gray-400 text-xs sm:text-sm">
               © 2025 Alimullah Sadat. All rights reserved.
             </p>
