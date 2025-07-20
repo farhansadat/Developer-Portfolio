@@ -10,7 +10,7 @@ import Experience from "./components/Experience";
 import Education from "./components/Education";
 import Contact from "./components/Contact";
 import NotFound from "./pages/not-found";
-import { useEffect } from 'react';
+import { useEffect, useState } from "react";
 
 function HomePage() {
   return (
@@ -27,6 +27,8 @@ function HomePage() {
 }
 
 function App() {
+  const [showDropdown, setShowDropdown] = useState(false);
+
   useEffect(() => {
     (function (d, t) {
       var BASE_URL = "https://chatwoot-production-e9f6.up.railway.app";
@@ -40,6 +42,7 @@ function App() {
           window.chatwootSDK.run({
             websiteToken: "se1CLxG1RiBG7UBrnVQw8Wb6",
             baseUrl: BASE_URL,
+            launcher: { show: false }, // Hide default bubble
           });
         }
       };
@@ -47,12 +50,24 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
+    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300 relative">
       <Navbar />
       <Switch>
         <Route path="/" component={HomePage} />
         <Route component={NotFound} />
       </Switch>
+
+      {/* Custom Chat Launcher */}
+      <a
+        onClick={() => window.$chatwoot?.toggle()}
+        className="fixed bottom-6 right-6 z-50 cursor-pointer"
+      >
+        <img
+          src="https://img.icons8.com/?size=100&id=CHBf5jmRzl9y&format=png&color=000000"
+          alt="Chat"
+          className="w-14 h-14 hover:scale-110 transition-transform"
+        />
+      </a>
 
       {/* Footer */}
       <footer className="bg-slate-900 dark:bg-gray-950 text-white py-8 sm:py-12">
@@ -93,39 +108,45 @@ function App() {
                 <i className="fas fa-envelope"></i>
               </a>
 
-              {/* Help Center Dropdown */}
-              <div className="relative group text-gray-400 hover:text-green-400 text-lg sm:text-xl cursor-pointer">
+              {/* Help Center Dropdown (Fixed) */}
+              <div
+                className="relative text-gray-400 hover:text-green-400 text-lg sm:text-xl cursor-pointer"
+                onMouseEnter={() => setShowDropdown(true)}
+                onMouseLeave={() => setShowDropdown(false)}
+              >
                 <div className="flex items-center space-x-1">
                   <i className="fas fa-book"></i>
                   <span className="text-sm">Help Center</span>
                   <span className="ml-1 block w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
                 </div>
-                <div className="absolute bottom-full mb-2 left-0 hidden group-hover:block bg-gray-800 text-white rounded-md shadow-lg text-sm z-50 min-w-[220px]">
-                  <a
-                    href="https://chatwoot-production-e9f6.up.railway.app/hc/studenthelpcenter/en"
-                    className="block px-4 py-2 hover:bg-gray-700 whitespace-nowrap"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    🎓 Student Help Center
-                  </a>
-                  <a
-                    href="https://chatwoot-production-e9f6.up.railway.app/hc/instructor-help-center"
-                    className="block px-4 py-2 hover:bg-gray-700 whitespace-nowrap"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    👨‍🏫 Instructor Help Center
-                  </a>
-                  <a
-                    href="https://chatwoot-production-e9f6.up.railway.app/hc/product-release-notes"
-                    className="block px-4 py-2 hover:bg-gray-700 whitespace-nowrap"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    📝 Release Notes
-                  </a>
-                </div>
+                {showDropdown && (
+                  <div className="absolute bottom-full mb-2 left-0 bg-gray-800 text-white rounded-md shadow-lg text-sm z-50 min-w-[220px]">
+                    <a
+                      href="https://chatwoot-production-e9f6.up.railway.app/hc/studenthelpcenter/en"
+                      className="block px-4 py-2 hover:bg-gray-700 whitespace-nowrap"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      🎓 Student Help Center
+                    </a>
+                    <a
+                      href="https://chatwoot-production-e9f6.up.railway.app/hc/instructor-help-center"
+                      className="block px-4 py-2 hover:bg-gray-700 whitespace-nowrap"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      👨‍🏫 Instructor Help Center
+                    </a>
+                    <a
+                      href="https://chatwoot-production-e9f6.up.railway.app/hc/product-release-notes"
+                      className="block px-4 py-2 hover:bg-gray-700 whitespace-nowrap"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      📝 Release Notes
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
             <p className="text-gray-400 text-xs sm:text-sm">
