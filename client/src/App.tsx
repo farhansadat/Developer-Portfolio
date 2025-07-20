@@ -10,7 +10,7 @@ import Experience from "./components/Experience";
 import Education from "./components/Education";
 import Contact from "./components/Contact";
 import NotFound from "./pages/not-found";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function HomePage() {
   return (
@@ -27,6 +27,8 @@ function HomePage() {
 }
 
 function App() {
+  const [showHelpLinks, setShowHelpLinks] = useState(false);
+
   useEffect(() => {
     const BASE_URL = "https://chatwoot-production-e9f6.up.railway.app";
 
@@ -40,7 +42,7 @@ function App() {
           baseUrl: BASE_URL,
         });
 
-        // Listen for reset trigger message
+        // Reset session when "::reset_session::" message is received
         window.addEventListener("message", (event) => {
           if (typeof event.data === "string" && event.data.includes("::reset_session::")) {
             window.chatwootSDK.reset();
@@ -50,7 +52,6 @@ function App() {
     };
 
     document.body.appendChild(script);
-
     return () => {
       document.body.removeChild(script);
     };
@@ -65,7 +66,7 @@ function App() {
       </Switch>
 
       {/* Footer */}
-      <footer className="bg-slate-900 dark:bg-gray-950 text-white py-8 sm:py-12">
+      <footer className="bg-slate-900 dark:bg-gray-950 text-white py-8 sm:py-12 relative">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center">
             <div className="mb-4 sm:mb-6">
@@ -77,33 +78,42 @@ function App() {
                 ></motion.i>
               </div>
             </div>
+
             <div className="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
-              <a
-                href="https://github.com/farhansadat"
-                className="text-gray-400 hover:text-blue-400 transition-colors text-lg sm:text-xl"
-              >
+              <a href="https://github.com/farhansadat" className="text-gray-400 hover:text-blue-400 transition-colors text-lg sm:text-xl">
                 <i className="fab fa-github"></i>
               </a>
-              <a
-                href="https://www.linkedin.com/in/alimullahsadat/"
-                className="text-gray-400 hover:text-blue-400 transition-colors text-lg sm:text-xl"
-              >
+              <a href="https://www.linkedin.com/in/alimullahsadat/" className="text-gray-400 hover:text-blue-400 transition-colors text-lg sm:text-xl">
                 <i className="fab fa-linkedin"></i>
               </a>
-              <a
-                href="https://instagram.com/farhan_sadat1532"
-                className="text-gray-400 hover:text-pink-400 transition-colors text-lg sm:text-xl"
-              >
+              <a href="https://instagram.com/farhan_sadat1532" className="text-gray-400 hover:text-pink-400 transition-colors text-lg sm:text-xl">
                 <i className="fab fa-instagram"></i>
               </a>
-              <a
-                href="mailto:farhansadatx@gmail.com"
-                className="text-gray-400 hover:text-blue-400 transition-colors text-lg sm:text-xl"
-              >
+              <a href="mailto:farhansadatx@gmail.com" className="text-gray-400 hover:text-blue-400 transition-colors text-lg sm:text-xl">
                 <i className="fas fa-envelope"></i>
               </a>
-              {/* Help Center Dropdown already fixed */}
+
+              {/* Help Center Button */}
+              <div className="relative">
+                <button
+                  className="text-green-500 hover:underline text-sm"
+                  onClick={() => setShowHelpLinks(!showHelpLinks)}
+                >
+                  🟢 Help Center
+                </button>
+                {showHelpLinks && (
+                  <div
+                    className="absolute bottom-6 left-0 bg-gray-800 text-white rounded shadow-lg py-2 px-4 z-50"
+                    onMouseLeave={() => setShowHelpLinks(false)}
+                  >
+                    <a href="/help-center/student" className="block py-1 text-sm hover:underline">⚡ Student Help Center</a>
+                    <a href="/help-center/instructor" className="block py-1 text-sm hover:underline">👨‍🏫 Instructor Help Center</a>
+                    <a href="/help-center/articles/june-26-release-notes" className="block py-1 text-sm hover:underline">📅 Release Notes</a>
+                  </div>
+                )}
+              </div>
             </div>
+
             <p className="text-gray-400 text-xs sm:text-sm">
               © 2025 Alimullah Sadat. All rights reserved.
             </p>
