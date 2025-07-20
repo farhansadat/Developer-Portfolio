@@ -10,7 +10,7 @@ import Experience from "./components/Experience";
 import Education from "./components/Education";
 import Contact from "./components/Contact";
 import NotFound from "./pages/not-found";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 function HomePage() {
   return (
@@ -27,8 +27,6 @@ function HomePage() {
 }
 
 function App() {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-
   useEffect(() => {
     (function (d, t) {
       var BASE_URL = "https://chatwoot-production-e9f6.up.railway.app";
@@ -42,28 +40,27 @@ function App() {
           window.chatwootSDK.run({
             websiteToken: "se1CLxG1RiBG7UBrnVQw8Wb6",
             baseUrl: BASE_URL,
-            launcher: {
-              show: true, // ✅ default red bubble is back
-            },
+          });
+
+          // Automatically reset chat when resolved
+          window.addEventListener("message", function (event) {
+            if (
+              event.data &&
+              typeof event.data === "string" &&
+              event.data.includes("conversation-resolved")
+            ) {
+              setTimeout(() => {
+                window.chatwootSDK.reset(); // Full session reset for customer
+              }, 5000); // Adjust timing as needed
+            }
           });
         }
       };
     })(document, "script");
   }, []);
 
-  useEffect(() => {
-    function handleClickOutside(e) {
-      const dropdown = document.getElementById("help-center-dropdown");
-      if (dropdown && !dropdown.contains(e.target)) {
-        setDropdownOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300 relative">
+    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
       <Navbar />
       <Switch>
         <Route path="/" component={HomePage} />
@@ -83,8 +80,7 @@ function App() {
                 ></motion.i>
               </div>
             </div>
-
-            <div className="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6 relative">
+            <div className="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
               <a
                 href="https://github.com/farhansadat"
                 className="text-gray-400 hover:text-blue-400 transition-colors text-lg sm:text-xl"
@@ -110,50 +106,45 @@ function App() {
                 <i className="fas fa-envelope"></i>
               </a>
 
-              {/* Help Center Click Toggle */}
-              <div
-                id="help-center-dropdown"
-                className="relative text-gray-400 hover:text-green-400 text-lg sm:text-xl cursor-pointer"
-              >
-                <div
-                  onClick={() => setDropdownOpen((prev) => !prev)}
-                  className="flex items-center space-x-1"
+              {/* Help Center Dropdown */}
+              <div className="relative group inline-block text-left">
+                <a
+                  className="text-green-400 hover:text-green-300 transition-colors text-lg sm:text-xl relative flex items-center cursor-pointer"
                 >
-                  <i className="fas fa-book"></i>
-                  <span className="text-sm">Help Center</span>
-                  <span className="ml-1 block w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                  <i className="fas fa-book mr-1"></i>
+                  Help Center
+                  <span className="absolute top-0 right-0 -mt-1 -mr-2">
+                    <span className="block w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                  </span>
+                </a>
+                <div className="hidden group-hover:flex group-focus:flex flex-col absolute bottom-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white rounded shadow-lg z-50 min-w-max px-2 py-2 space-y-1">
+                  <a
+                    href="https://chatwoot-production-e9f6.up.railway.app/hc/studenthelpcenter/en"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:bg-gray-700 px-4 py-1 rounded text-sm"
+                  >
+                    🧑‍🎓 Student Help Center
+                  </a>
+                  <a
+                    href="https://chatwoot-production-e9f6.up.railway.app/hc/instructor-help-center"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:bg-gray-700 px-4 py-1 rounded text-sm"
+                  >
+                    🧑‍🏫 Instructor Help Center
+                  </a>
+                  <a
+                    href="https://chatwoot-production-e9f6.up.railway.app/hc/product-release-notes"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:bg-gray-700 px-4 py-1 rounded text-sm"
+                  >
+                    📓 Release Notes
+                  </a>
                 </div>
-                {dropdownOpen && (
-                  <div className="absolute bottom-full mb-2 left-0 bg-gray-800 text-white rounded-md shadow-lg text-sm z-50 min-w-[220px]">
-                    <a
-                      href="https://chatwoot-production-e9f6.up.railway.app/hc/studenthelpcenter/en"
-                      className="block px-4 py-2 hover:bg-gray-700 whitespace-nowrap"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      🎓 Student Help Center
-                    </a>
-                    <a
-                      href="https://chatwoot-production-e9f6.up.railway.app/hc/instructor-help-center"
-                      className="block px-4 py-2 hover:bg-gray-700 whitespace-nowrap"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      👨‍🏫 Instructor Help Center
-                    </a>
-                    <a
-                      href="https://chatwoot-production-e9f6.up.railway.app/hc/product-release-notes"
-                      className="block px-4 py-2 hover:bg-gray-700 whitespace-nowrap"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      📝 Release Notes
-                    </a>
-                  </div>
-                )}
               </div>
             </div>
-
             <p className="text-gray-400 text-xs sm:text-sm">
               © 2025 Alimullah Sadat. All rights reserved.
             </p>
