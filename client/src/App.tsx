@@ -43,7 +43,7 @@ function App() {
             websiteToken: "se1CLxG1RiBG7UBrnVQw8Wb6",
             baseUrl: BASE_URL,
             launcher: {
-              show: false, // 👈 hide default red bubble
+              show: true, // ✅ default red bubble is back
             },
           });
         }
@@ -51,7 +51,6 @@ function App() {
     })(document, "script");
   }, []);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     function handleClickOutside(e) {
       const dropdown = document.getElementById("help-center-dropdown");
@@ -70,18 +69,6 @@ function App() {
         <Route path="/" component={HomePage} />
         <Route component={NotFound} />
       </Switch>
-
-      {/* ✅ Custom Chatwoot Launcher */}
-      <a
-        onClick={() => window.$chatwoot?.toggle()}
-        className="fixed bottom-6 right-6 z-50 cursor-pointer"
-      >
-        <img
-          src="https://img.icons8.com/?size=100&id=CHBf5jmRzl9y&format=png&color=000000"
-          alt="Chat"
-          className="w-14 h-14 hover:scale-110 transition-transform"
-        />
-      </a>
 
       {/* Footer */}
       <footer className="bg-slate-900 dark:bg-gray-950 text-white py-8 sm:py-12">
@@ -123,7 +110,7 @@ function App() {
                 <i className="fas fa-envelope"></i>
               </a>
 
-              {/* ✅ Click-to-toggle Help Center Menu */}
+              {/* Help Center Click Toggle */}
               <div
                 id="help-center-dropdown"
                 className="relative text-gray-400 hover:text-green-400 text-lg sm:text-xl cursor-pointer"
