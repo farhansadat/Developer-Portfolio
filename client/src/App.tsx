@@ -92,6 +92,17 @@ function App() {
               >
                 <i className="fas fa-envelope"></i>
               </a>
+              <a
+                href="https://chatwoot-production-e9f6.up.railway.app/help-center"
+                className="text-gray-400 hover:text-green-400 transition-colors text-lg sm:text-xl relative flex items-center"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fas fa-book mr-1"></i> Help Center
+                <span className="absolute top-0 right-0 -mt-1 -mr-2">
+                  <span className="block w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                </span>
+              </a>
             </div>
             <p className="text-gray-400 text-xs sm:text-sm">
               © 2025 Alimullah Sadat. All rights reserved.
