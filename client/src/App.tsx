@@ -67,7 +67,7 @@ function App() {
                 ></motion.i>
               </div>
             </div>
-            <div className="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
+            <div className="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6 relative">
               <a
                 href="https://github.com/farhansadat"
                 className="text-gray-400 hover:text-blue-400 transition-colors text-lg sm:text-xl"
@@ -92,17 +92,41 @@ function App() {
               >
                 <i className="fas fa-envelope"></i>
               </a>
-              <a
-                href="https://chatwoot-production-e9f6.up.railway.app/help-center"
-                className="text-gray-400 hover:text-green-400 transition-colors text-lg sm:text-xl relative flex items-center"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="fas fa-book mr-1"></i> Help Center
-                <span className="absolute top-0 right-0 -mt-1 -mr-2">
-                  <span className="block w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
-                </span>
-              </a>
+
+              {/* Help Center Dropdown */}
+              <div className="relative group text-gray-400 hover:text-green-400 text-lg sm:text-xl cursor-pointer">
+                <div className="flex items-center space-x-1">
+                  <i className="fas fa-book"></i>
+                  <span className="text-sm">Help Center</span>
+                  <span className="ml-1 block w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                </div>
+                <div className="absolute bottom-full mb-2 left-0 hidden group-hover:block bg-gray-800 text-white rounded-md shadow-lg text-sm z-50 min-w-[220px]">
+                  <a
+                    href="https://chatwoot-production-e9f6.up.railway.app/hc/studenthelpcenter/en"
+                    className="block px-4 py-2 hover:bg-gray-700 whitespace-nowrap"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    🎓 Student Help Center
+                  </a>
+                  <a
+                    href="https://chatwoot-production-e9f6.up.railway.app/hc/instructor-help-center"
+                    className="block px-4 py-2 hover:bg-gray-700 whitespace-nowrap"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    👨‍🏫 Instructor Help Center
+                  </a>
+                  <a
+                    href="https://chatwoot-production-e9f6.up.railway.app/hc/product-release-notes"
+                    className="block px-4 py-2 hover:bg-gray-700 whitespace-nowrap"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    📝 Release Notes
+                  </a>
+                </div>
+              </div>
             </div>
             <p className="text-gray-400 text-xs sm:text-sm">
               © 2025 Alimullah Sadat. All rights reserved.
