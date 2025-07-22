@@ -42,7 +42,6 @@ function App() {
           baseUrl: BASE_URL,
         });
 
-        // Reset session when "::reset_session::" message is received
         window.addEventListener("message", (event) => {
           if (typeof event.data === "string" && event.data.includes("::reset_session::")) {
             window.chatwootSDK.reset();
@@ -79,7 +78,7 @@ function App() {
               </div>
             </div>
 
-            <div className="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
+            <div className="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6 relative">
               <a href="https://github.com/farhansadat" className="text-gray-400 hover:text-blue-400 transition-colors text-lg sm:text-xl">
                 <i className="fab fa-github"></i>
               </a>
@@ -96,19 +95,38 @@ function App() {
               {/* Help Center Button */}
               <div className="relative">
                 <button
-                  className="text-green-500 hover:underline text-sm"
+                  className="text-green-400 hover:text-green-300 text-sm focus:outline-none"
                   onClick={() => setShowHelpLinks(!showHelpLinks)}
                 >
                   🟢 Help Center
                 </button>
+
                 {showHelpLinks && (
                   <div
-                    className="absolute bottom-6 left-0 bg-gray-800 text-white rounded shadow-lg py-2 px-4 z-50"
+                    className="absolute left-1/2 transform -translate-x-1/2 mt-2 bg-gray-800 border border-gray-700 rounded-lg shadow-lg py-2 px-4 z-50 w-64 text-left"
                     onMouseLeave={() => setShowHelpLinks(false)}
                   >
-                    <a href="/help-center/student" className="block py-1 text-sm hover:underline">⚡ Student Help Center</a>
-                    <a href="/help-center/instructor" className="block py-1 text-sm hover:underline">👨‍🏫 Instructor Help Center</a>
-                    <a href="/help-center/articles/june-26-release-notes" className="block py-1 text-sm hover:underline">📅 Release Notes</a>
+                    <a
+                      href="https://chatwoot-production-e9f6.up.railway.app/app/accounts/1/portals/studenthelpcenter/en/articles"
+                      className="block py-1 text-sm text-white hover:underline"
+                      target="_blank" rel="noopener noreferrer"
+                    >
+                      ⚡ Student Help Center
+                    </a>
+                    <a
+                      href="https://chatwoot-production-e9f6.up.railway.app/app/accounts/1/portals/instructor-help-center/en/articles"
+                      className="block py-1 text-sm text-white hover:underline"
+                      target="_blank" rel="noopener noreferrer"
+                    >
+                      👨‍🏫 Instructor Help Center
+                    </a>
+                    <a
+                      href="https://chatwoot-production-e9f6.up.railway.app/app/accounts/1/portals/product-release-notes/en/articles"
+                      className="block py-1 text-sm text-white hover:underline"
+                      target="_blank" rel="noopener noreferrer"
+                    >
+                      📅 Release Notes
+                    </a>
                   </div>
                 )}
               </div>
