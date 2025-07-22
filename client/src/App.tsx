@@ -102,32 +102,36 @@ function App() {
                 </button>
 
                 {showHelpLinks && (
-                  <div
-                    className="absolute left-1/2 transform -translate-x-1/2 mt-2 bg-gray-800 border border-gray-700 rounded-lg shadow-lg py-2 px-4 z-50 w-64 text-left"
+                  <motion.div
+                    className="absolute left-1/2 transform -translate-x-1/2 mt-3 bg-gray-900 border border-gray-700 rounded-lg shadow-xl py-3 px-5 z-50 w-72 text-left"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.2 }}
                     onMouseLeave={() => setShowHelpLinks(false)}
                   >
                     <a
-                      href="https://chatwoot-production-e9f6.up.railway.app/app/accounts/1/portals/studenthelpcenter/en/articles"
-                      className="block py-1 text-sm text-white hover:underline"
+                      href="https://chatwoot-production-e9f6.up.railway.app/hc/studenthelpcenter/en"
+                      className="block py-2 px-3 text-sm text-white hover:bg-gray-800 rounded transition"
                       target="_blank" rel="noopener noreferrer"
                     >
                       ⚡ Student Help Center
                     </a>
                     <a
-                      href="https://chatwoot-production-e9f6.up.railway.app/app/accounts/1/portals/instructor-help-center/en/articles"
-                      className="block py-1 text-sm text-white hover:underline"
+                      href="https://chatwoot-production-e9f6.up.railway.app/hc/instructor-help-center/en"
+                      className="block py-2 px-3 text-sm text-white hover:bg-gray-800 rounded transition"
                       target="_blank" rel="noopener noreferrer"
                     >
                       👨‍🏫 Instructor Help Center
                     </a>
                     <a
-                      href="https://chatwoot-production-e9f6.up.railway.app/app/accounts/1/portals/product-release-notes/en/articles"
-                      className="block py-1 text-sm text-white hover:underline"
+                      href="https://chatwoot-production-e9f6.up.railway.app/hc/product-release-notes/"
+                      className="block py-2 px-3 text-sm text-white hover:bg-gray-800 rounded transition"
                       target="_blank" rel="noopener noreferrer"
                     >
                       📅 Release Notes
                     </a>
-                  </div>
+                  </motion.div>
                 )}
               </div>
             </div>
